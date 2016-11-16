@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  <title>Reactive maps sample</title>
+  <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyC-v0oz7Pay_ltypZbKasABXGiY9NlpCIY&libraries=places"></script>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" type="text/css" href="dist/css/vendor.min.css" />
+  <link rel="stylesheet" type="text/css" href="dist/css/style.min.css" />
+  <style type="text/css">
+    body {
+      margin: 0;
+    }
+    #container {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 10px;
+      width: 800px;
+      height: 800px;
+      background-color: #fff;
+    }
+  </style>
+  <!-- Compiled and minified JavaScript -->
+  <script type="text/javascript" src="dist/js/vendor.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script>
+  <script type="text/javascript" src="https://npmcdn.com/react/dist/react-with-addons.min.js"></script>
+  <script type="text/javascript" src="https://npmcdn.com/react-dom/dist/react-dom.min.js"></script>
+  <script type="text/javascript" src="https://npmcdn.com/react-dom/dist/react-dom-server.min.js"></script>
+  <script type="text/javascript" src="https://npmcdn.com/recharts/umd/Recharts.min.js"></script>
+</head>
+<body>
+  <div id="container">
+    <!-- This element's contents will be replaced with your component. -->
+  </div>
+  <script>
+    const {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} = Recharts;
+    const data = [
+          {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
+          {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
+          {name: 'Page C', uv: 2000, pv: 9800, amt: 2290},
+          {name: 'Page D', uv: 2780, pv: 3908, amt: 2000},
+          {name: 'Page E', uv: 1890, pv: 4800, amt: 2181},
+          {name: 'Page F', uv: 2390, pv: 3800, amt: 2500},
+          {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
+    ];
+    const SimpleLineChart = React.createClass({
+      render () {
+        return (
+          <LineChart width={600} height={300} data={data}
+                margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+           <XAxis dataKey="name"/>
+           <YAxis/>
+           <CartesianGrid strokeDasharray="3 3"/>
+           <Tooltip/>
+           <Legend />
+           <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{r: 8}}/>
+           <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+          </LineChart>
+        );
+      }
+    })
+
+    ReactDOM.render(
+      <SimpleLineChart />,
+      document.getElementById('container')
+    );
+
+  </script>
+</body>
+
+</html>
